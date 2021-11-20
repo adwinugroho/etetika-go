@@ -1,0 +1,6 @@
+.env
+views/gulpfile.js
+views/package.json
+views/assets/js/*
+views/assets/svg/*
+views/assets/video/*
