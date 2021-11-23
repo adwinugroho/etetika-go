@@ -21,10 +21,10 @@ func main() {
 	getModels := models.NewDAO(getConnect)
 	// get services
 	getServices := services.NewServices(getModels)
+	// get static for assets
 	e.Static("/", "views")
 
 	routes.Init(e, getServices)
-	// get static for assets
 
 	//log.Printf("listen server on port %+v\n", config.PORT)
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%s", config.PORT)))
