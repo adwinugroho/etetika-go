@@ -23,23 +23,27 @@ type Template struct {
 }
 
 func Init(e *echo.Echo, services getRoutesDao) {
+	// read directory
 	t := &Template{
-		templates: template.Must(template.ParseGlob("views/front-end/*.html")),
+		templates: template.Must(template.ParseGlob("views/pages/*.html")),
 	}
 	e.Renderer = t
 	route := &GetRoutes{services}
-	// init index
-	indexRoute := e.Group("/")
-	indexRoute.GET("", route.index2)
-	indexRoute.GET("about", route.about)
-	indexRoute.GET("blog", route.blog)
-	indexRoute.GET("cart", route.cart)
-	indexRoute.GET("checkout", route.checkout)
-	indexRoute.GET("contact", route.contact)
-	indexRoute.GET("faq", route.faq)
-	indexRoute.GET("event", route.event)
-	indexRoute.GET("privacy", route.privacy)
-	indexRoute.GET("product", route.product)
+	// init front page
+	frontPageRoute := e.Group("/")
+	frontPageRoute.GET("", route.index2)
+	frontPageRoute.GET("about", route.about)
+	frontPageRoute.GET("blog", route.blog)
+	frontPageRoute.GET("cart", route.cart)
+	frontPageRoute.GET("checkout", route.checkout)
+	frontPageRoute.GET("contact", route.contact)
+	frontPageRoute.GET("faq", route.faq)
+	frontPageRoute.GET("event", route.event)
+	frontPageRoute.GET("privacy", route.privacy)
+	frontPageRoute.GET("product", route.product)
+	// init dashboard page
+	dashboardRoute := e.Group("/dashboard")
+	dashboardRoute.GET("", route.index2)
 
 }
 
