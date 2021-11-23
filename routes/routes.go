@@ -3,6 +3,7 @@ package routes
 import (
 	"html/template"
 	"io"
+	"log"
 
 	"github.com/labstack/echo/v4"
 )
@@ -32,6 +33,8 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	indexRoute.GET("", route.index2)
 	indexRoute.GET("about", route.about)
 	indexRoute.GET("blog", route.blog)
+	indexRoute.GET("cart", route.cart)
+	indexRoute.GET("checkout", route.checkout)
 	indexRoute.GET("contact", route.contact)
 	indexRoute.GET("faq", route.faq)
 	indexRoute.GET("event", route.event)
@@ -41,7 +44,15 @@ func Init(e *echo.Echo, services getRoutesDao) {
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
-	return t.templates.ExecuteTemplate(w, name, data)
+	tplErr := t.templates.ExecuteTemplate(w, name, data)
+	if tplErr != nil {
+		log.Printf("error cause:%+v\n", tplErr)
+		return t.templates.ExecuteTemplate(w, "404", map[string]interface{}{
+			"title": "e-Tetika | Error Halaman Tidak Ditemukan! :(",
+		})
+	} else {
+		return nil
+	}
 }
 
 func (route *GetRoutes) index2(c echo.Context) error {
@@ -63,6 +74,18 @@ func (route *GetRoutes) about(c echo.Context) error {
 func (route *GetRoutes) blog(c echo.Context) error {
 	return c.Render(200, "blog", map[string]interface{}{
 		"title": "Blog | e-Tetika",
+	})
+}
+
+func (route *GetRoutes) cart(c echo.Context) error {
+	return c.Render(200, "cart", map[string]interface{}{
+		"title": "Cart | e-Tetika",
+	})
+}
+
+func (route *GetRoutes) checkout(c echo.Context) error {
+	return c.Render(200, "checkout", map[string]interface{}{
+		"title": "Checkout | e-Tetika",
 	})
 }
 
