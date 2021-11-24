@@ -17,9 +17,6 @@
                         </div>
                         <div class="col-lg-6 text-end">
                             <ul class="header-dropdown">
-                                <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart"
-                                            aria-hidden="true"></i></a>
-                                </li>
                                 <li class="onhover-dropdown mobile-account">
                                     <i class="fa fa-user" aria-hidden="true"></i> My Account
                                 </li>
@@ -53,11 +50,6 @@
                                                 <div class="mobile-back text-end">Back<i class="fa fa-angle-right ps-2"
                                                         aria-hidden="true"></i></div>
                                             </li>
-                                            <li><a href='/'>Home</a></li>
-                                            <li><a href='{{ "event" }}'>Event</a></li>
-                                            <li><a href='{{ "product" }}'>Product</a></li>
-                                            <li><a href='{{ "blog" }}'>Blog</a></li>
-                                            <li><a href='{{ "contact" }}'>Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -292,14 +284,9 @@
                     </div>
                     <div class="col-lg-6 text-end">
                         <ul class="header-dropdown">
-                            <li class="mobile-wishlist"><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            </li>
                             <li class="onhover-dropdown mobile-account">
                                 <i class="fa fa-user" aria-hidden="true"></i> My Account
-                                <ul class="onhover-show-div">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">register</a></li>
-                                </ul>
+                                {{ template "section_login_or_register" .}}
                             </li>
                         </ul>
                     </div>
@@ -312,17 +299,6 @@
                 <div class="col-sm-12">
                     <div class="main-menu">
                         <div class="menu-left">
-                            <div class="navbar">
-                                <a href="javascript:void(0)" onclick="openNav()">
-                                    <div class="bar-style"> <i class="fa fa-bars sidebar-bar" aria-hidden="true"></i>
-                                    </div>
-                                </a>
-                                <li><a href='/'>Home</a></li>
-                                <li><a href='{{ "event" }}'>Event</a></li>
-                                <li><a href='{{ "product" }}'>Product</a></li>
-                                <li><a href='{{ "blog" }}'>Blog</a></li>
-                                <li><a href='{{ "contact" }}'>Contact</a></li>
-                            </div>
                             <div class="brand-logo">
                                 <a href="/"> <img src="../assets/images/icon/logo.png"
                                         class="img-fluid blur-up lazyload" alt=""></a>
@@ -362,12 +338,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li class="onhover-div mobile-setting">
-                                            <div><img src="../assets/images/icon/setting.png"
-                                                    class="img-fluid blur-up lazyload" alt="">
-                                                <i class="ti-settings"></i>
                                             </div>
                                         </li>
                                         <li class="onhover-div mobile-cart">

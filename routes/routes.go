@@ -39,8 +39,10 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("contact", route.contact)
 	frontPageRoute.GET("faq", route.faq)
 	frontPageRoute.GET("event", route.event)
+	frontPageRoute.GET("login", route.login)
 	frontPageRoute.GET("privacy", route.privacy)
 	frontPageRoute.GET("product", route.product)
+	frontPageRoute.GET("register", route.register)
 	// init dashboard page
 	dashboardRoute := e.Group("/dashboard")
 	dashboardRoute.GET("", route.index2)
@@ -111,6 +113,12 @@ func (route *GetRoutes) faq(c echo.Context) error {
 	})
 }
 
+func (route *GetRoutes) login(c echo.Context) error {
+	return c.Render(200, "login", map[string]interface{}{
+		"title": "Login | e-Tetika",
+	})
+}
+
 func (route *GetRoutes) privacy(c echo.Context) error {
 	return c.Render(200, "privacy", map[string]interface{}{
 		"title": "Privacy | e-Tetika",
@@ -120,5 +128,11 @@ func (route *GetRoutes) privacy(c echo.Context) error {
 func (route *GetRoutes) product(c echo.Context) error {
 	return c.Render(200, "product", map[string]interface{}{
 		"title": "Product | e-Tetika",
+	})
+}
+
+func (route *GetRoutes) register(c echo.Context) error {
+	return c.Render(200, "register", map[string]interface{}{
+		"title": "Register | e-Tetika",
 	})
 }
