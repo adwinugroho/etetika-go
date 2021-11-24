@@ -29,6 +29,8 @@ var (
 	PORT = os.Getenv("PORT_ETETIKA")
 )
 
+var UserContext string
+
 func NewArangoDBDatabase() *ArangoDB {
 	ctx, cancel := NewArangoDBContext()
 	defer cancel()

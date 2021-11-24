@@ -39,13 +39,17 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("contact", route.contact)
 	frontPageRoute.GET("faq", route.faq)
 	frontPageRoute.GET("event", route.event)
+	//frontPageRoute.POST("login", route.login)
 	frontPageRoute.GET("login", route.login)
 	frontPageRoute.GET("privacy", route.privacy)
 	frontPageRoute.GET("product", route.product)
 	frontPageRoute.GET("register", route.register)
 	// init dashboard page
 	dashboardRoute := e.Group("/dashboard")
-	dashboardRoute.GET("", route.index2)
+	dashboardRoute.POST("", route.indexDashboard)
+	// init process routes
+	processRoute := e.Group("/process")
+	processRoute.POST("/login", route.processLogin)
 
 }
 
@@ -114,6 +118,11 @@ func (route *GetRoutes) faq(c echo.Context) error {
 }
 
 func (route *GetRoutes) login(c echo.Context) error {
+	if c.Request().Method == "POST" {
+		return c.Render(200, "login", map[string]interface{}{
+			"title": "Login | e-Tetika",
+		})
+	}
 	return c.Render(200, "login", map[string]interface{}{
 		"title": "Login | e-Tetika",
 	})
