@@ -1,8 +1,8 @@
-package models
+package request
 
 type (
 	User struct {
-		Email    string   `json:"email"`
+		Email    string   `form:"email"`
 		FullName string   `json:"fullName"`
 		Phone    string   `json:"phone"`
 		Address  string   `json:"address"`

@@ -14,6 +14,7 @@ import (
 func main() {
 	log.SetFlags(log.Llongfile | log.Ldate | log.Ltime)
 	e := echo.New()
+	// e.Use(session.Middleware(session.DefaultConfig.Store))
 	// tes cpnnection DB
 	getConnect := config.NewArangoDBDatabase()
 	fmt.Println(getConnect)

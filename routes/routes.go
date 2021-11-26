@@ -5,16 +5,20 @@ import (
 	"io"
 	"log"
 
+	"github.com/adwinugroho/etetika-go/config"
+	"github.com/adwinugroho/etetika-go/models/request"
 	"github.com/labstack/echo/v4"
 )
 
 type (
 	getRoutesDao interface {
 		// Implements from services
+		GetDataUserByEmail(email string) interface{}
 	}
 
 	GetRoutes struct {
 		services getRoutesDao
+		user     *request.User
 	}
 )
 
@@ -28,9 +32,10 @@ func Init(e *echo.Echo, services getRoutesDao) {
 		templates: template.Must(template.ParseGlob("views/pages/*.html")),
 	}
 	e.Renderer = t
-	route := &GetRoutes{services}
+	route := &GetRoutes{services, nil}
 	// init front page
 	frontPageRoute := e.Group("/")
+	frontPageRoute.Use(route.checkSessionUser)
 	frontPageRoute.GET("", route.index2)
 	frontPageRoute.GET("about", route.about)
 	frontPageRoute.GET("blog", route.blog)
@@ -43,15 +48,24 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("login", route.login)
 	frontPageRoute.GET("privacy", route.privacy)
 	frontPageRoute.GET("product", route.product)
+	frontPageRoute.POST("register", route.register)
 	frontPageRoute.GET("register", route.register)
 	// init dashboard page
 	dashboardRoute := e.Group("/dashboard")
-	dashboardRoute.POST("", route.indexDashboard)
+	// dashboardRoute.Use(route.accessDashboard)
+	dashboardRoute.POST("", route.indexDashboard, route.validateDashboard)
+	dashboardRoute.GET("", route.indexDashboard, route.accessDashboard)
+	//dashboardRoute.POST("/event", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/event", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/logout", route.logout)
 	// init process routes
 	processRoute := e.Group("/process")
 	processRoute.POST("/login", route.processLogin)
+	processRoute.POST("/register", route.processRegister)
 
 }
+
+var userContext config.UserContext
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	tplErr := t.templates.ExecuteTemplate(w, name, data)
@@ -118,9 +132,21 @@ func (route *GetRoutes) faq(c echo.Context) error {
 }
 
 func (route *GetRoutes) login(c echo.Context) error {
+	// log.Println(c.Get("err"))
+	var email string
+	if c.Get("email") != nil {
+		email = c.Get("email").(string)
+	}
 	return c.Render(200, "login", map[string]interface{}{
-		"title": "Login | e-Tetika",
+		"title":      "Login | e-Tetika",
+		"err":        c.Get("err"),
+		"email_user": email,
 	})
+	/*
+		{{ if ne .err nil }}
+			<h3>Error cause {{ .err }}</h3>
+		{{ end }}
+	*/
 }
 
 func (route *GetRoutes) privacy(c echo.Context) error {

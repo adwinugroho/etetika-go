@@ -27,9 +27,11 @@ var (
 	DBName = os.Getenv("DB_NAME")
 	// Port on running server
 	PORT = os.Getenv("PORT_ETETIKA")
+	// Redis password
+	REDISADDR = os.Getenv("REDIS_URL")
 )
 
-var UserContext string
+type UserContext string
 
 func NewArangoDBDatabase() *ArangoDB {
 	ctx, cancel := NewArangoDBContext()

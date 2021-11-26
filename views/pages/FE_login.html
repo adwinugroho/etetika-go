@@ -126,6 +126,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
+                    {{ if (ne .email_user "") }}
+                    <h3>Silahkan ke Dashboard</h3>
+                    {{ end }}
                     <h3>Login</h3>
                     <div class="theme-card">
                         <form class="theme-form" action='{{ "process/login" }}' method="POST">

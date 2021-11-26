@@ -1,14 +1,81 @@
 package routes
 
-import "github.com/labstack/echo/v4"
+import (
+	"context"
+	"log"
 
-func (route *GetRoutes) checkMethodLogin(next echo.HandlerFunc) echo.HandlerFunc {
+	"github.com/adwinugroho/etetika-go/models/request"
+	"github.com/go-session/session"
+	"github.com/labstack/echo/v4"
+)
+
+func (route *GetRoutes) checkSessionUser(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		if c.Request().Method == "POST" {
-			return c.Render(200, "login", map[string]interface{}{
-				"title": "Login | e-Tetika",
-			})
+		// cookie, err := c.Cookie("email")
+		// if err != nil {
+		// 	log.Printf("error in check session user:%+v\n", err)
+		// 	return err
+		// }
+		// log.Printf("email from cookie:%v\n", cookie.Value)
+		// email := cookie.Value
+		store, err := session.Start(context.Background(), c.Response(), c.Request())
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
 		}
+		getSession, _ := store.Get("email")
+		var email string
+		if getSession != nil {
+			email = getSession.(string)
+		}
+		// if !ok {
+		// 	return c.JSON(400, "Error when get sessions store")
+		// } else if getSession == nil {
+		// 	return c.JSON(400, "Error when get sessions store")
+		// }
+		log.Printf("email from checkSessionUser:%v\n", email)
+		c.Set("email", email)
+		return next(c)
+	}
+}
+
+func (route *GetRoutes) validateDashboard(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		email := c.FormValue("email")
+		route.user = new(request.User)
+		store, err := session.Start(context.Background(), c.Response(), c.Request())
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		store.Set("email", email)
+		err = store.Save()
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		route.user.Email = email
+		log.Println("email validate dashboard", route.user.Email)
+		return next(c)
+	}
+}
+
+func (route *GetRoutes) accessDashboard(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		store, err := session.Start(context.Background(), c.Response(), c.Request())
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		getSession, _ := store.Get("email")
+		var email string
+		if getSession != nil {
+			email = getSession.(string)
+		}
+		// if !ok {
+		// 	return c.JSON(400, "Error when get sessions store")
+		// } else if getSession == nil {
+		// 	return c.JSON(400, "Error when get sessions store")
+		// }
+		log.Printf("email from accessDashboard:%v\n", email)
+		route.user = new(request.User)
+		route.user.Email = email
 		return next(c)
 	}
 }
