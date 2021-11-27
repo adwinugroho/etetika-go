@@ -1,12 +1,14 @@
 package routes
 
 import (
+	"context"
 	"html/template"
 	"io"
 	"log"
 
 	"github.com/adwinugroho/etetika-go/config"
 	"github.com/adwinugroho/etetika-go/models/request"
+	"github.com/go-session/session"
 	"github.com/labstack/echo/v4"
 )
 
@@ -133,6 +135,21 @@ func (route *GetRoutes) faq(c echo.Context) error {
 
 func (route *GetRoutes) login(c echo.Context) error {
 	// log.Println(c.Get("err"))
+	store, err := session.Start(context.Background(), c.Response(), c.Request())
+	if err != nil {
+		return c.JSON(500, "Internal Server Error")
+	}
+	getSession, _ := store.Get("err")
+	store.Delete("err")
+	return c.Render(200, "login", map[string]interface{}{
+		"title":      "Login | e-Tetika",
+		"err":        getSession,
+		"email_user": route.user.Email,
+	})
+}
+
+func (route *GetRoutes) loginPost(c echo.Context) error {
+	// log.Println(c.Get("err"))
 	var email string
 	if c.Get("email") != nil {
 		email = c.Get("email").(string)
@@ -162,7 +179,15 @@ func (route *GetRoutes) product(c echo.Context) error {
 }
 
 func (route *GetRoutes) register(c echo.Context) error {
+	store, err := session.Start(context.Background(), c.Response(), c.Request())
+	if err != nil {
+		return c.JSON(500, "Internal Server Error")
+	}
+	getSession, _ := store.Get("err")
+	store.Delete("err")
 	return c.Render(200, "register", map[string]interface{}{
-		"title": "Register | e-Tetika",
+		"title":      "Register | e-Tetika",
+		"err":        getSession,
+		"email_user": route.user.Email,
 	})
 }

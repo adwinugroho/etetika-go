@@ -1,9 +1,11 @@
 package routes
 
 import (
+	"context"
 	"log"
 	"net/http"
 
+	"github.com/go-session/session"
 	"github.com/labstack/echo/v4"
 )
 
@@ -18,7 +20,16 @@ func (route *GetRoutes) processLogin(c echo.Context) error {
 			return c.JSON(500, "Internal Server Error, Please Contact Customer Service")
 		}
 	} else {
-		log.Println("loggin failed")
+		// log.Printf("loggin failed cause:%+v\n", err)
+		store, err := session.Start(context.Background(), c.Response(), c.Request())
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		store.Set("err", "Invalid Username/Password")
+		err = store.Save()
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
 		return c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/login")
 	}
 	return nil
@@ -27,13 +38,19 @@ func (route *GetRoutes) processLogin(c echo.Context) error {
 func (route *GetRoutes) processRegister(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
-	fullname := c.FormValue("fullname")
+	fullname := c.FormValue("fullName")
 	phone := c.FormValue("phone")
 	if email == "" || password == "" || fullname == "" || phone == "" {
-		return c.Render(200, "register", map[string]interface{}{
-			"title":        "Register | e-Tetika",
-			"errorMessage": "Invalid Data",
-		})
+		store, err := session.Start(context.Background(), c.Response(), c.Request())
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		store.Set("err", "Invalid Data")
+		err = store.Save()
+		if err != nil {
+			return c.JSON(500, "Internal Server Error")
+		}
+		return c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/register")
 	}
 	return c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/dashboard")
 }

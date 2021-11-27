@@ -128,34 +128,41 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
+                    {{ if (ne .email_user "") }}
+                    <a href='{{"dashboard"}}'><h3>Silahkan ke Dashboard</h3></a>
+                    {{ else }}
                     <h3>create account</h3>
+                    {{ if (ne .err "") }}
+                    <p style="color: red;">{{.err}}</p>
+                    {{ end }}
                     <div class="theme-card">
-                        <form class="theme-form">
+                        <form class="theme-form" action='{{ "process/register" }}' method="post">
                             <div class="form-row row">
                                 <div class="col-md-6">
-                                    <label for="email">First Name</label>
-                                    <input type="text" class="form-control" id="fname" placeholder="First Name"
-                                        required="">
+                                    <label for="fullname">Full Name</label>
+                                    <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Full name"
+                                        required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="review">Last Name</label>
-                                    <input type="password" class="form-control" id="lname" placeholder="Last Name"
-                                        required="">
+                                    <label for="phone">Phone</label>
+                                    <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone number"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-row row">
                                 <div class="col-md-6">
-                                    <label for="email">email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Email" required="">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="review">Password</label>
-                                    <input type="password" class="form-control" id="review"
-                                        placeholder="Enter your password" required="">
-                                </div><a href="#" class="btn btn-solid w-auto">create Account</a>
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="password" required>
+                                </div><input class="btn btn-solid w-auto" type="submit"></input>
+                                <p>Already have an account?<a href='{{ "login" }}'> login</a></p>
                             </div>
                         </form>
                     </div>
+                    {{ end }}
                 </div>
             </div>
         </div>

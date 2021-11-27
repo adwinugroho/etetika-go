@@ -34,6 +34,8 @@ func (route *GetRoutes) checkSessionUser(next echo.HandlerFunc) echo.HandlerFunc
 		// }
 		log.Printf("email from checkSessionUser:%v\n", email)
 		c.Set("email", email)
+		route.user = new(request.User)
+		route.user.Email = email
 		return next(c)
 	}
 }
