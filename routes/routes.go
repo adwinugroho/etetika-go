@@ -54,12 +54,26 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("register", route.register)
 	// init dashboard page
 	dashboardRoute := e.Group("/dashboard")
-	// dashboardRoute.Use(route.accessDashboard)
 	dashboardRoute.POST("", route.indexDashboard, route.validateDashboard)
 	dashboardRoute.GET("", route.indexDashboard, route.accessDashboard)
-	//dashboardRoute.POST("/event", route.listEvent, route.accessDashboard)
+
 	dashboardRoute.GET("/event/list", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/event/create", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/event/edit/:id", route.manageEvent, route.accessDashboard)
+
 	dashboardRoute.GET("/logout", route.logout)
+
+	dashboardRoute.GET("/product/list", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/product/create", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/product/edit/:id", route.manageEvent, route.accessDashboard)
+
+	dashboardRoute.GET("/profile/edit", route.listEvent, route.accessDashboard)
+
+	dashboardRoute.GET("/user/list", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/user/create", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/user/edit/:id", route.manageEvent, route.accessDashboard)
+
+	dashboardRoute.GET("/report/detail", route.listTicket, route.accessDashboard)
 	dashboardRoute.GET("/ticket/list", route.listTicket, route.accessDashboard)
 	// init process routes
 	processRoute := e.Group("/process")
@@ -147,24 +161,6 @@ func (route *GetRoutes) login(c echo.Context) error {
 		"err":        getSession,
 		"email_user": route.user.Email,
 	})
-}
-
-func (route *GetRoutes) loginPost(c echo.Context) error {
-	// log.Println(c.Get("err"))
-	var email string
-	if c.Get("email") != nil {
-		email = c.Get("email").(string)
-	}
-	return c.Render(200, "login", map[string]interface{}{
-		"title":      "Login | e-Tetika",
-		"err":        c.Get("err"),
-		"email_user": email,
-	})
-	/*
-		{{ if ne .err nil }}
-			<h3>Error cause {{ .err }}</h3>
-		{{ end }}
-	*/
 }
 
 func (route *GetRoutes) privacy(c echo.Context) error {

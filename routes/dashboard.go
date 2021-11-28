@@ -17,13 +17,6 @@ func (route *GetRoutes) indexDashboard(c echo.Context) error {
 	})
 }
 
-func (route *GetRoutes) manageEvent(c echo.Context) error {
-	return c.Render(200, "event_manage", map[string]interface{}{
-		"title": "e-Tetika | Manage Event",
-		"email": route.user.Email,
-	})
-}
-
 func (route *GetRoutes) listEvent(c echo.Context) error {
 	return c.Render(200, "event_list", map[string]interface{}{
 		"title": "e-Tetika | List Event",
@@ -44,4 +37,11 @@ func (route *GetRoutes) logout(c echo.Context) error {
 		return c.JSON(500, "Internal Server Error")
 	}
 	return c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/login")
+}
+
+func (route *GetRoutes) manageEvent(c echo.Context) error {
+	return c.Render(200, "event_manage", map[string]interface{}{
+		"title": "e-Tetika | Manage Event",
+		"email": route.user.Email,
+	})
 }
