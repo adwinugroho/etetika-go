@@ -58,8 +58,9 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	dashboardRoute.POST("", route.indexDashboard, route.validateDashboard)
 	dashboardRoute.GET("", route.indexDashboard, route.accessDashboard)
 	//dashboardRoute.POST("/event", route.listEvent, route.accessDashboard)
-	dashboardRoute.GET("/event", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/event/list", route.listEvent, route.accessDashboard)
 	dashboardRoute.GET("/logout", route.logout)
+	dashboardRoute.GET("/ticket/list", route.listTicket, route.accessDashboard)
 	// init process routes
 	processRoute := e.Group("/process")
 	processRoute.POST("/login", route.processLogin)

@@ -56,7 +56,7 @@
                             </div>
                         </form>
                     </li>
-                    <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
+                    <li><a class="text-dark" href="#" onclick="javascript:toggleFullScreen()"><i data-feather="maximize-2"></i></a></li>
                     <li class="onhover-dropdown"><a class="txt-dark" href="#">
                         <h6>EN</h6></a>
                         <ul class="language-dropdown onhover-show-div p-20">
@@ -114,7 +114,7 @@
             </div>
         </div>
     </div>
-    <!-- Page Header Ends-->
+    <!-- Page Header Ends -->
 
     <!-- Page Body Start-->
     <div class="page-body-wrapper">
@@ -302,7 +302,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="page-header-left">
-                                <h3>List Page
+                                <h3>User List
                                     <small>Multikart Admin panel</small>
                                 </h3>
                             </div>
@@ -310,8 +310,8 @@
                         <div class="col-lg-6">
                             <ol class="breadcrumb pull-right">
                                 <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                                <li class="breadcrumb-item">Pages</li>
-                                <li class="breadcrumb-item active">List Page</li>
+                                <li class="breadcrumb-item">Users</li>
+                                <li class="breadcrumb-item active">User List</li>
                             </ol>
                         </div>
                     </div>
@@ -321,16 +321,15 @@
 
             <!-- Container-fluid starts-->
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Page Details</h5>
-                            </div>
-                            <div class="card-body">
-                                <div id="batchDelete" class="category-table order-table"></div>
-                            </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5>User Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="btn-popup pull-right">
+                            <a href="create-user.html" class="btn btn-secondary">Create User</a>
                         </div>
+                        <div id="batchDelete" class="category-table user-list order-table"></div>
                     </div>
                 </div>
             </div>
@@ -352,7 +351,6 @@
             </div>
         </footer>
         <!-- footer end-->
-
     </div>
 
 </div>
@@ -372,8 +370,8 @@
 
 <!-- Jsgrid js-->
 <script src="../assets/js/jsgrid/jsgrid.min.js"></script>
-<script src="../assets/js/jsgrid/griddata-page-list.js"></script>
-<script src="../assets/js/jsgrid/jsgrid-page-list.js"></script>
+<script src="../assets/js/jsgrid/griddata-users.js"></script>
+<script src="../assets/js/jsgrid/jsgrid-users.js"></script>
 
 <!--Customizer admin-->
 <script src="../assets/js/admin-customizer.js"></script>

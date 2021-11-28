@@ -17,9 +17,23 @@ func (route *GetRoutes) indexDashboard(c echo.Context) error {
 	})
 }
 
+func (route *GetRoutes) manageEvent(c echo.Context) error {
+	return c.Render(200, "event_manage", map[string]interface{}{
+		"title": "e-Tetika | Manage Event",
+		"email": route.user.Email,
+	})
+}
+
 func (route *GetRoutes) listEvent(c echo.Context) error {
-	return c.Render(200, "list_event", map[string]interface{}{
+	return c.Render(200, "event_list", map[string]interface{}{
 		"title": "e-Tetika | List Event",
+		"email": route.user.Email,
+	})
+}
+
+func (route *GetRoutes) listTicket(c echo.Context) error {
+	return c.Render(200, "ticket_list", map[string]interface{}{
+		"title": "e-Tetika | List Ticket",
 		"email": route.user.Email,
 	})
 }

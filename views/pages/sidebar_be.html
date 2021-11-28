@@ -1,0 +1,73 @@
+{{ define "sidebar_be" }}
+<div class="page-sidebar">
+    <div class="main-header-left d-none d-lg-block">
+        <div class="logo-wrapper"><a href="index.html"><img class="blur-up lazyloaded" src="../assets/images/dashboard/multikart-logo.png" alt=""></a></div>
+    </div>
+    <div class="sidebar custom-scrollbar">
+        <div class="sidebar-user text-center">
+            <div><img class="img-60 rounded-circle lazyloaded blur-up" src="../assets/images/dashboard/man.png" alt="#">
+            </div>
+            <h6 class="mt-3 f-14">{{ .fullname }}</h6>
+            <p>{{.email}}</p>
+        </div>
+        <!-- if user == admin -->
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-header" href='{{"dashboard"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
+            <li><a class="sidebar-header" href=""><i data-feather="box"></i><span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/product/list"}}'><i class="fa fa-circle"></i>List Product</a></li>
+                    <li><a href='{{"dashboard/product/add"}}'><i class="fa fa-circle"></i>Add Product</a></li>
+                </ul>
+            </li>
+            <li><a class="sidebar-header" href="#"><i data-feather="clipboard"></i><span>Events</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/event/list"}}'><i class="fa fa-circle"></i>List Event</a></li>
+                    <li><a href='{{"dashboard/event/create"}}'><i class="fa fa-circle"></i>Create Event</a></li>
+                </ul>
+            </li>
+            <li><a class="sidebar-header" href=""><i data-feather="users"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/user/list"}}'><i class="fa fa-circle"></i>List User</a></li>
+                    <li><a href='{{"dashboard/user/create"}}'><i class="fa fa-circle"></i>Create user</a></li>
+                </ul>
+            </li>
+            <li><a class="sidebar-header" href='{{"dashboard/report"}}'><i data-feather="bar-chart"></i><span>Reports</span></a></li>
+        </ul>
+        <!-- if user == user biasa -->
+        <!-- <ul class="sidebar-menu">
+            <li><a class="sidebar-header" href='{{"dashboard/event"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
+            
+        </ul> -->
+        <!-- if user == pelaku_seni
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-header" href='{{"dashboard/event"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
+            <li><a class="sidebar-header" href="#"><i data-feather="clipboard"></i><span>Events</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/event/list"}}'><i class="fa fa-circle"></i>List Event</a></li>
+                    <li><a href='{{"dashboard/event/create"}}'><i class="fa fa-circle"></i>Create Event</a></li>
+                </ul>
+            </li>
+        </ul> -->
+        <!-- if user == pelaku_seni_premium
+        <ul class="sidebar-menu">
+            <li><a class="sidebar-header" href='{{"dashboard/event"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
+            <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
+            <li><a class="sidebar-header" href=""><i data-feather="box"></i><span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/product/list"}}'><i class="fa fa-circle"></i>List Product</a></li>
+                    <li><a href='{{"dashboard/product/add"}}'><i class="fa fa-circle"></i>Add Product</a></li>
+                </ul>
+            </li>
+            <li><a class="sidebar-header" href="#"><i data-feather="clipboard"></i><span>Events</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href='{{"dashboard/event/list"}}'><i class="fa fa-circle"></i>List Event</a></li>
+                    <li><a href='{{"dashboard/event/create"}}'><i class="fa fa-circle"></i>Create Event</a></li>
+                </ul>
+            </li>
+        </ul> -->
+    </div>
+</div>
+{{ end }}
