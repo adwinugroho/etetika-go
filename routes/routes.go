@@ -2,6 +2,7 @@ package routes
 
 import (
 	"context"
+	"fmt"
 	"html/template"
 	"io"
 	"log"
@@ -52,6 +53,7 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("product", route.product)
 	frontPageRoute.POST("register", route.register)
 	frontPageRoute.GET("register", route.register)
+	frontPageRoute.GET("tes", route.Tes)
 	// init dashboard page
 	dashboardRoute := e.Group("/dashboard")
 	dashboardRoute.POST("", route.indexDashboard, route.validateDashboard)
@@ -59,19 +61,19 @@ func Init(e *echo.Echo, services getRoutesDao) {
 
 	dashboardRoute.GET("/event/list", route.listEvent, route.accessDashboard)
 	dashboardRoute.GET("/event/create", route.manageEvent, route.accessDashboard)
-	dashboardRoute.GET("/event/edit/:id", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/event/edit", route.manageEvent, route.accessDashboard)
 
 	dashboardRoute.GET("/logout", route.logout)
 
 	dashboardRoute.GET("/product/list", route.listEvent, route.accessDashboard)
 	dashboardRoute.GET("/product/create", route.manageEvent, route.accessDashboard)
-	dashboardRoute.GET("/product/edit/:id", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/product/edit", route.manageEvent, route.accessDashboard)
 
 	dashboardRoute.GET("/profile/edit", route.listEvent, route.accessDashboard)
 
 	dashboardRoute.GET("/user/list", route.listEvent, route.accessDashboard)
 	dashboardRoute.GET("/user/create", route.manageEvent, route.accessDashboard)
-	dashboardRoute.GET("/user/edit/:id", route.manageEvent, route.accessDashboard)
+	dashboardRoute.GET("/user/edit", route.manageEvent, route.accessDashboard)
 
 	dashboardRoute.GET("/report/detail", route.listTicket, route.accessDashboard)
 	dashboardRoute.GET("/ticket/list", route.listTicket, route.accessDashboard)
@@ -79,6 +81,15 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	processRoute := e.Group("/process")
 	processRoute.POST("/login", route.processLogin)
 	processRoute.POST("/register", route.processRegister)
+
+	processRoute.POST("/event/create", route.processRegister)
+	processRoute.POST("/event/update", route.processRegister)
+
+	processRoute.POST("/product/create", route.processRegister)
+	processRoute.POST("/product/update", route.processRegister)
+
+	processRoute.POST("/user/create", route.processRegister)
+	processRoute.POST("/user/update", route.processRegister)
 
 }
 
@@ -94,6 +105,11 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	} else {
 		return nil
 	}
+}
+
+func (rouye *GetRoutes) Tes(c echo.Context) error {
+	name := c.QueryParam("id")
+	return c.String(200, fmt.Sprintf("hallo %s", name))
 }
 
 func (route *GetRoutes) index2(c echo.Context) error {
@@ -126,7 +142,8 @@ func (route *GetRoutes) cart(c echo.Context) error {
 
 func (route *GetRoutes) checkout(c echo.Context) error {
 	return c.Render(200, "checkout", map[string]interface{}{
-		"title": "Checkout | e-Tetika",
+		"title":      "Checkout | e-Tetika",
+		"email_user": route.user.Email,
 	})
 }
 

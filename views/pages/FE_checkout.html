@@ -139,53 +139,30 @@
                                 <div class="checkout-title">
                                     <h3>Billing Details</h3>
                                 </div>
+                                {{ if (eq .email_user "") }}
                                 <div class="row check-out">
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <div class="field-label">First Name</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <div class="field-label">Last Name</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <div class="field-label">Phone</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                    </div>
-                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                        <div class="field-label">Email Address</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
+                                    <p>Silahkan login agar dapat melakukan pembayaran <a href='{{ "login" }}'>Login</a> atau <a href='{{ "register" }}'>Register</a> bila tidak punya akun</p>
+                                </div>
+                                {{ else }}
+                                <div class="row check-out">
+                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                        <div class="field-label">Alamat</div>
+                                        <input type="text" name="field-name" placeholder="Alamat">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                        <div class="field-label">Country</div>
-                                        <select>
-                                            <option>India</option>
-                                            <option>South Africa</option>
-                                            <option>United State</option>
-                                            <option>Australia</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                        <div class="field-label">Address</div>
-                                        <input type="text" name="field-name" value="" placeholder="Street address">
-                                    </div>
-                                    <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                        <div class="field-label">Town/City</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
+                                        <div class="field-label">Kota</div>
+                                        <input type="text" name="field-name" placeholder="Kota">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                        <div class="field-label">State / County</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
+                                        <div class="field-label">Negara</div>
+                                        <input type="text" name="field-name" placeholder="Negara">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                        <div class="field-label">Postal Code</div>
-                                        <input type="text" name="field-name" value="" placeholder="">
-                                    </div>
-                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <input type="checkbox" name="shipping-option" id="account-option"> &ensp;
-                                        <label for="account-option">Create An Account?</label>
+                                        <div class="field-label">Kode Pos</div>
+                                        <input type="text" name="field-name" placeholder="Kode Pos">
                                     </div>
                                 </div>
+                                {{ end }}
                             </div>
                             <div class="col-lg-6 col-sm-12 col-xs-12">
                                 <div class="checkout-details">
@@ -225,32 +202,17 @@
                                                             <input type="radio" name="payment-group" id="payment-1"
                                                                 checked="checked">
                                                             <label for="payment-1">Check Payments<span
-                                                                    class="small-text">Please send a check to Store
-                                                                    Name, Store Street, Store Town, Store State /
-                                                                    County, Store Postcode.</span></label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="radio-option">
-                                                            <input type="radio" name="payment-group" id="payment-2">
-                                                            <label for="payment-2">Cash On Delivery<span
-                                                                    class="small-text">Please send a check to Store
-                                                                    Name, Store Street, Store Town, Store State /
-                                                                    County, Store Postcode.</span></label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="radio-option paypal">
-                                                            <input type="radio" name="payment-group" id="payment-3">
-                                                            <label for="payment-3">PayPal<span class="image"><img
-                                                                        src="../assets/images/paypal.png"
-                                                                        alt=""></span></label>
+                                                                    class="small-text">Cek kembali detail alamat, kota, negara dan kode pos</span></label>
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        {{ if (eq .email_user "") }}
+                                        <p>Silahkan login agar dapat melakukan pembayaran <a href='{{ "login" }}'>Login</a> atau <a href='{{ "register" }}'>Register</a> bila tidak punya akun</p>
+                                        {{ else }}
                                         <div class="text-end"><a href="#" class="btn-solid btn">Place Order</a></div>
+                                        {{ end }}
                                     </div>
                                 </div>
                             </div>
