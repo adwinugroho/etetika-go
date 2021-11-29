@@ -12,7 +12,7 @@ import (
 func (route *GetRoutes) processLogin(c echo.Context) error {
 	email := c.FormValue("email")
 	password := c.FormValue("password")
-	if email == "admin" && password == "password" {
+	if email == "admin@etetika.com" && password == "password" {
 		//c.Set("email", email)
 		err := c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/dashboard")
 		if err != nil {

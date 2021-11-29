@@ -12,15 +12,17 @@ func (route *GetRoutes) indexDashboard(c echo.Context) error {
 	// ctx := context.Background()
 	// ctxValue := context.WithValue(ctx, userContext, route.user)
 	return c.Render(200, "dashboard", map[string]interface{}{
-		"title": "e-Tetika | Dashboard",
-		"email": route.user.Email,
+		"title":    "e-Tetika | Dashboard",
+		"email":    route.user.Email,
+		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
 
 func (route *GetRoutes) listEvent(c echo.Context) error {
 	return c.Render(200, "event_list", map[string]interface{}{
-		"title": "e-Tetika | List Event",
-		"email": route.user.Email,
+		"title":    "e-Tetika | List Event",
+		"email":    route.user.Email,
+		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
 
