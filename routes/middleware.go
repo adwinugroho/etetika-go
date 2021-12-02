@@ -11,13 +11,6 @@ import (
 
 func (route *GetRoutes) checkSessionUser(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		// cookie, err := c.Cookie("email")
-		// if err != nil {
-		// 	log.Printf("error in check session user:%+v\n", err)
-		// 	return err
-		// }
-		// log.Printf("email from cookie:%v\n", cookie.Value)
-		// email := cookie.Value
 		store, err := session.Start(context.Background(), c.Response(), c.Request())
 		if err != nil {
 			return c.JSON(500, "Internal Server Error")
@@ -27,11 +20,6 @@ func (route *GetRoutes) checkSessionUser(next echo.HandlerFunc) echo.HandlerFunc
 		if getSession != nil {
 			email = getSession.(string)
 		}
-		// if !ok {
-		// 	return c.JSON(400, "Error when get sessions store")
-		// } else if getSession == nil {
-		// 	return c.JSON(400, "Error when get sessions store")
-		// }
 		log.Printf("email from checkSessionUser:%v\n", email)
 		c.Set("email", email)
 		route.user = new(request.User)
@@ -84,11 +72,6 @@ func (route *GetRoutes) accessDashboard(next echo.HandlerFunc) echo.HandlerFunc 
 		} else if email == "user@etetika.com" {
 			role = "user"
 		}
-		// if !ok {
-		// 	return c.JSON(400, "Error when get sessions store")
-		// } else if getSession == nil {
-		// 	return c.JSON(400, "Error when get sessions store")
-		// }
 		log.Printf("email from accessDashboard:%v\n", email)
 		route.user = new(request.User)
 		route.user.Email = email

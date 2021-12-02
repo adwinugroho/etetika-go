@@ -65,13 +65,13 @@ func Init(e *echo.Echo, services getRoutesDao) {
 
 	dashboardRoute.GET("/logout", route.logout)
 
-	dashboardRoute.GET("/product/list", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/product/list", route.listProduct, route.accessDashboard)
 	dashboardRoute.GET("/product/create", route.manageEvent, route.accessDashboard)
 	dashboardRoute.GET("/product/edit", route.manageEvent, route.accessDashboard)
 
 	dashboardRoute.GET("/profile/edit", route.listEvent, route.accessDashboard)
 
-	dashboardRoute.GET("/user/list", route.listEvent, route.accessDashboard)
+	dashboardRoute.GET("/user/list", route.listUser, route.accessDashboard)
 	dashboardRoute.GET("/user/create", route.manageEvent, route.accessDashboard)
 	dashboardRoute.GET("/user/edit", route.manageEvent, route.accessDashboard)
 

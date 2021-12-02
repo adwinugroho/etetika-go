@@ -28,10 +28,30 @@ func (route *GetRoutes) listEvent(c echo.Context) error {
 	})
 }
 
+func (route *GetRoutes) listProduct(c echo.Context) error {
+	return c.Render(200, "product_list", map[string]interface{}{
+		"title":    "e-Tetika | List Product",
+		"email":    route.user.Email,
+		"role":     route.user.Role,
+		"fullname": "Adwin Nugroho Siswoyo",
+	})
+}
+
+func (route *GetRoutes) listUser(c echo.Context) error {
+	return c.Render(200, "user_list", map[string]interface{}{
+		"title":    "e-Tetika | List User",
+		"email":    route.user.Email,
+		"role":     route.user.Role,
+		"fullname": "Adwin Nugroho Siswoyo",
+	})
+}
+
 func (route *GetRoutes) listTicket(c echo.Context) error {
 	return c.Render(200, "ticket_list", map[string]interface{}{
-		"title": "e-Tetika | List Ticket",
-		"email": route.user.Email,
+		"title":    "e-Tetika | List Ticket",
+		"email":    route.user.Email,
+		"role":     route.user.Role,
+		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
 
