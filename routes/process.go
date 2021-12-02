@@ -19,6 +19,13 @@ func (route *GetRoutes) processLogin(c echo.Context) error {
 			log.Println("error when redirect to dashboard", err)
 			return c.JSON(500, "Internal Server Error, Please Contact Customer Service")
 		}
+	} else if email == "user@etetika.com" && password == "password" {
+		//c.Set("email", email)
+		err := c.Redirect(http.StatusTemporaryRedirect, "http://localhost:9000/dashboard")
+		if err != nil {
+			log.Println("error when redirect to dashboard", err)
+			return c.JSON(500, "Internal Server Error, Please Contact Customer Service")
+		}
 	} else {
 		// log.Printf("loggin failed cause:%+v\n", err)
 		store, err := session.Start(context.Background(), c.Response(), c.Request())

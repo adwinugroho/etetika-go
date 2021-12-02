@@ -133,7 +133,9 @@
                     {{ else }}
                     <h3>create account</h3>
                     {{ if (ne .err "") }}
-                    <p style="color: red;">{{.err}}</p>
+                    <div class="alert alert-danger" role="alert">
+                        {{.err}}
+                    </div>
                     {{ end }}
                     <div class="theme-card">
                         <form class="theme-form" action='{{ "process/register" }}' method="post">
