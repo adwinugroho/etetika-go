@@ -132,7 +132,7 @@
                     <a href='{{"dashboard"}}'><h3>Silahkan ke Dashboard</h3></a>
                     {{ else }}
                     <h3>create account</h3>
-                    {{ if (ne .err "") }}
+                    {{ if ne .err nil }}
                     <div class="alert alert-danger" role="alert">
                         {{.err}}
                     </div>
@@ -159,7 +159,7 @@
                                 <div class="col-md-6">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                                </div><input class="btn btn-solid w-auto" type="submit"></input>
+                                </div><input class="btn btn-solid w-auto" type="submit" value="register"></input>
                                 <p>Already have an account?<a href='{{ "login" }}'> login</a></p>
                             </div>
                         </form>

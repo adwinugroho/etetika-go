@@ -43,6 +43,12 @@ func (route *GetRoutes) checkSessionUser(next echo.HandlerFunc) echo.HandlerFunc
 func (route *GetRoutes) validateDashboard(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		email := c.FormValue("email")
+		var role string
+		if email == "admin@etetika.com" {
+			role = "admin"
+		} else if email == "user@etetika.com" {
+			role = "user"
+		}
 		route.user = new(request.User)
 		store, err := session.Start(context.Background(), c.Response(), c.Request())
 		if err != nil {
@@ -54,7 +60,9 @@ func (route *GetRoutes) validateDashboard(next echo.HandlerFunc) echo.HandlerFun
 			return c.JSON(500, "Internal Server Error")
 		}
 		route.user.Email = email
+		route.user.Role = role
 		log.Println("email validate dashboard", route.user.Email)
+		log.Println("role validate dashboard", route.user.Role)
 		return next(c)
 	}
 }
@@ -70,6 +78,12 @@ func (route *GetRoutes) accessDashboard(next echo.HandlerFunc) echo.HandlerFunc 
 		if getSession != nil {
 			email = getSession.(string)
 		}
+		var role string
+		if email == "admin@etetika.com" {
+			role = "admin"
+		} else if email == "user@etetika.com" {
+			role = "user"
+		}
 		// if !ok {
 		// 	return c.JSON(400, "Error when get sessions store")
 		// } else if getSession == nil {
@@ -78,6 +92,7 @@ func (route *GetRoutes) accessDashboard(next echo.HandlerFunc) echo.HandlerFunc 
 		log.Printf("email from accessDashboard:%v\n", email)
 		route.user = new(request.User)
 		route.user.Email = email
+		route.user.Role = role
 		return next(c)
 	}
 }

@@ -130,8 +130,10 @@
                     <a href='{{"dashboard"}}'><h3>Silahkan ke Dashboard</h3></a>
                     {{ else }}
                     <h3>Login</h3>
-                    {{ if (ne .err "") }}
-                    <p style="color: red;">{{.err}}</p>
+                    {{ if ne .err nil }}
+                    <div class="alert alert-danger" role="alert">
+                        {{.err}}
+                    </div>
                     {{ end }}
                     <div class="theme-card">
                         <form class="theme-form" action='{{ "process/login" }}' method="POST">

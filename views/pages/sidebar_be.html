@@ -11,6 +11,7 @@
             <p>{{.email}}</p>
         </div>
         <!-- if user == admin -->
+        {{ if eq .role "admin" }}
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href='{{"dashboard"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
             <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
@@ -35,11 +36,14 @@
             <li><a class="sidebar-header" href='{{"dashboard/report"}}'><i data-feather="bar-chart"></i><span>Reports</span></a></li>
         </ul>
         <!-- if user == user biasa -->
-        <!-- <ul class="sidebar-menu">
+        {{ else if eq .role "user" }}
+        <p>{{.role}}</p>
+        <ul class="sidebar-menu">
             <li><a class="sidebar-header" href='{{"dashboard/event"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>
             <li><a class="sidebar-header" href='{{"dashboard/ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
             
-        </ul> -->
+        </ul>
+        {{ end }}
         <!-- if user == pelaku_seni
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href='{{"dashboard/event"}}'><i data-feather="home"></i><span>Dashboard</span></a></li>

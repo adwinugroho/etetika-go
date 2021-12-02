@@ -14,6 +14,7 @@ func (route *GetRoutes) indexDashboard(c echo.Context) error {
 	return c.Render(200, "dashboard", map[string]interface{}{
 		"title":    "e-Tetika | Dashboard",
 		"email":    route.user.Email,
+		"role":     route.user.Role,
 		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
@@ -22,6 +23,7 @@ func (route *GetRoutes) listEvent(c echo.Context) error {
 	return c.Render(200, "event_list", map[string]interface{}{
 		"title":    "e-Tetika | List Event",
 		"email":    route.user.Email,
+		"role":     route.user.Role,
 		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
