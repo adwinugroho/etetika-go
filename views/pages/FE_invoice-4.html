@@ -1,3 +1,4 @@
+{{ define "invoice" }}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
   <meta name="author" content="multikart">
   <link rel="icon" href="../assets/images/favicon/1.png" type="image/x-icon">
   <link rel="shortcut icon" href="../assets/images/favicon/1.png" type="image/x-icon">
-  <title>Multikart - Multi-purpopse E-commerce Html Template</title>
+  <title>{{ .title }}</title>
 
   <!--Google font-->
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
@@ -54,24 +55,24 @@
                     <img src="../assets/images/icon/logo.png" class="img-fluid" alt="">
                     <div class="mt-md-4 mt-3">
                     <h4 class="mb-2">
-                      Multikart Demo Store india - 363512
+                      e-tetika.com - Samarinda ID
                     </h4>
-                    <h4 class="mb-0">support@multikart.com</h4>
+                    <h4 class="mb-0">support@etetika.com</h4>
                   </div>
                 </div>
                 <div class="col-md-6 text-md-end mt-md-0 mt-4">
                   <h2>invoice</h2>
                   <div class="mt-md-4 mt-3">
                     <h4 class="mb-2">
-                      2664  Tail Ends Road, ORADELL
+                      Jalan Semeru gg 2 No. 4 75242
                     </h4>
-                    <h4 class="mb-0">New Jersey, 07649</h4>
+                    <h4 class="mb-0">Samarinda, Indonesia</h4>
                   </div>
                 </div>
               </div>
               <div class="detail-bottom">
                 <ul>
-                  <li><span>issue date :</span><h4> 20 march, 2020</h4></li>
+                  <li><span>issue date :</span><h4> 20 november, 2021</h4></li>
                   <li><span>invoice no :</span><h4> 908452</h4></li>
                   <li><span>email :</span><h4> user@gmail.com</h4></li>
                 </ul>
@@ -84,52 +85,31 @@
                     <th scope="col">#</th>
                     <th scope="col">description</th>
                     <th scope="col">price</th>
-                    <th scope="col">hrs.</th>
+                    <th scope="col">qty</th>
                     <th scope="col">total</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>Logo Designing</td>
-                    <td>$50</td>
+                    <td>Choral Ochestra Folkfore Festival Samarinda</td>
+                    <td>Rp100.000</td>
                     <td>2</td>
-                    <td>$100</td>
+                    <td>Rp200.000</td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>website & banner design</td>
-                    <td>$30</td>
-                    <td>3</td>
-                    <td>$90</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>frontend development</td>
-                    <td>$95</td>
+                    <td>Single Zero Six Park</td>
+                    <td>Rp100.000</td>
                     <td>1</td>
-                    <td>$95</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>backend development</td>
-                    <td>$95</td>
-                    <td>1</td>
-                    <td>$95</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>SEO, Deigital marketing</td>
-                    <td>$95</td>
-                    <td>1</td>
-                    <td>$95</td>
+                    <td>Rp100.000</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <td colspan="2"></td>
                     <td class="font-bold text-dark" colspan="2">GRAND TOTAL</td>
-                    <td class="font-bold text-theme">$325.00</td>
+                    <td class="font-bold text-theme">Rp300.000</td>
                   </tr>
                 </tfoot>
               </table>
@@ -162,3 +142,4 @@
 </body>
 
 </html>
+{{ end }}

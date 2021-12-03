@@ -171,11 +171,11 @@
                                             <div>Product <span>Total</span></div>
                                         </div>
                                         <ul class="qty">
-                                            <li>Pink Slim Shirt × 1 <span>$25.10</span></li>
-                                            <li>SLim Fit Jeans × 1 <span>$555.00</span></li>
+                                            <li>Choral Ochestra Folkfore Festival Samarinda × 2 <span>Rp200.000</span></li>
+                                            <li>Single Zero Six Park × 1 <span>Rp100.000</span></li>
                                         </ul>
                                         <ul class="sub-total">
-                                            <li>Subtotal <span class="count">$380.10</span></li>
+                                            <li>Subtotal <span class="count">Rp300.000</span></li>
                                             <li>Shipping
                                                 <div class="shipping">
                                                     <div class="shopping-option">
@@ -190,7 +190,7 @@
                                             </li>
                                         </ul>
                                         <ul class="total">
-                                            <li>Total <span class="count">$620.00</span></li>
+                                            <li>Total <span class="count">300.000</span></li>
                                         </ul>
                                     </div>
                                     <div class="payment-box">
@@ -211,7 +211,7 @@
                                         {{ if (eq .email_user "") }}
                                         <p>Silahkan login agar dapat melakukan pembayaran <a href='{{ "login" }}'>Login</a> atau <a href='{{ "register" }}'>Register</a> bila tidak punya akun</p>
                                         {{ else }}
-                                        <div class="text-end"><a href="#" class="btn-solid btn">Place Order</a></div>
+                                        <div class="text-end"><a href='{{ "invoice" }}' class="btn-solid btn">Place Order</a></div>
                                         {{ end }}
                                     </div>
                                 </div>

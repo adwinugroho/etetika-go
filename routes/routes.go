@@ -46,6 +46,7 @@ func Init(e *echo.Echo, services getRoutesDao) {
 	frontPageRoute.GET("checkout", route.checkout)
 	frontPageRoute.GET("contact", route.contact)
 	frontPageRoute.GET("faq", route.faq)
+	frontPageRoute.GET("invoice", route.invoice)
 	frontPageRoute.GET("event", route.event)
 	frontPageRoute.POST("login", route.login)
 	frontPageRoute.GET("login", route.login)
@@ -203,5 +204,11 @@ func (route *GetRoutes) register(c echo.Context) error {
 		"title":      "Register | e-Tetika",
 		"err":        getSession,
 		"email_user": route.user.Email,
+	})
+}
+
+func (route *GetRoutes) invoice(c echo.Context) error {
+	return c.Render(200, "invoice", map[string]interface{}{
+		"title": "Invoice | e-Tetika",
 	})
 }
