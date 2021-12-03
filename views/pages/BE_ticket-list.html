@@ -46,53 +46,61 @@
 
             <!-- Container-fluid starts-->
             <div class="container-fluid">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Tickets</h5>
-                </div>
-                <div class="card-body">
-                    <table id="example" class="table table-striped" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Location</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Quantity</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Choral Ochestra Folkfore Festival Samarinda</td>
-                                <td>Gor Segiri Samarinda</td>
-                                <td>22-23 Februari</td>
-                                <td>16:00</td>
-                                <td>4</td>
-                                <td>
-                                    <a href='{{"dashboard"}}'><i data-feather="file" style="color: black;"></i></a>
-                                    <a href='{{"dashboard"}}'><i data-feather="edit" style="color: black;"></i></a>
-                                    <a href='{{"dashboard"}}'><i data-feather="x-circle" style="color: black;"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Smaland Culture of Kaltim</td>
-                                <td>SMA Negeri 5 Samarinda</td>
-                                <td>10 Oktober</td>
-                                <td>19:00</td>
-                                <td>3</td>
-                                <td>
-                                    <a href='{{"dashboard"}}'><i data-feather="file" style="color: black;"></i></a>
-                                    <a href='{{"dashboard"}}'><i data-feather="edit" style="color: black;"></i></a>
-                                    <a href='{{"dashboard"}}'><i data-feather="x-circle" style="color: black;"></i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>My Tickets</h5>
+                                <br>
+                                <div class="btn-popup pull-left">
+                                    <a href='http://localhost:9000/event' class="btn btn-secondary">Buy more ticket</a>
+                                </div>
+                            </div>
+                            <div class="card-body order-datatable">
+                                <table class="display" id="basic-1">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Location</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Quantity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Choral Ochestra Folkfore Festival Samarinda</td>
+                                            <td>Gor Segiri Samarinda</td>
+                                            <td>22-23 Februari</td>
+                                            <td>16:00</td>
+                                            <td>4</td>
+                                            <td>
+                                                <a href='{{"dashboard"}}'><i data-feather="file" style="color: black;"></i></a>
+                                                <a href='{{"dashboard"}}'><i data-feather="edit" style="color: black;"></i></a>
+                                                <a href='{{"dashboard"}}'><i data-feather="x-circle" style="color: black;"></i></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Smaland Culture of Kaltim</td>
+                                            <td>SMA Negeri 5 Samarinda</td>
+                                            <td>10 Oktober</td>
+                                            <td>19:00</td>
+                                            <td>3</td>
+                                            <td>
+                                                <a href='{{"dashboard"}}'><i data-feather="file" style="color: black;"></i></a>
+                                                <a href='{{"dashboard"}}'><i data-feather="edit" style="color: black;"></i></a>
+                                                <a href='{{"dashboard"}}'><i data-feather="x-circle" style="color: black;"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Container-fluid Ends-->
+            <!-- Container-fluid Ends-->
 
         </div>
 

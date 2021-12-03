@@ -65,7 +65,9 @@ func (route *GetRoutes) logout(c echo.Context) error {
 
 func (route *GetRoutes) manageEvent(c echo.Context) error {
 	return c.Render(200, "event_manage", map[string]interface{}{
-		"title": "e-Tetika | Manage Event",
-		"email": route.user.Email,
+		"title":    "e-Tetika | Manage Event",
+		"email":    route.user.Email,
+		"role":     route.user.Role,
+		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
