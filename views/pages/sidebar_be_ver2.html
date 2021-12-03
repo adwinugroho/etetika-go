@@ -12,7 +12,7 @@
         </div>
         <!-- if user == admin -->
         {{ if eq .role "admin" }}
-        <p>{{.role}}</p>
+        <!-- <p>{{.role}}</p> -->
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href='/dashboard'><i data-feather="home"></i><span>Dashboard</span></a></li>
             <li><a class="sidebar-header" href='{{"../ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
@@ -38,7 +38,7 @@
         </ul>
         <!-- if user == user biasa -->
         {{ else if eq .role "user" }}
-        <p>{{.role}}</p>
+        <!-- <p>{{.role}}</p> -->
         <ul class="sidebar-menu">
             <li><a class="sidebar-header" href='/dashboard'><i data-feather="home"></i><span>Dashboard</span></a></li>
             <li><a class="sidebar-header" href='{{"../ticket/list"}}'><i data-feather="tag"></i><span>Tickets</span></a></li>
