@@ -36,6 +36,8 @@ func (route *GetRoutes) validateDashboard(next echo.HandlerFunc) echo.HandlerFun
 			role = "admin"
 		} else if email == "user@etetika.com" {
 			role = "user"
+		} else if c.FormValue("role") != "" {
+			role = "user"
 		}
 		route.user = new(request.User)
 		store, err := session.Start(context.Background(), c.Response(), c.Request())
@@ -70,6 +72,8 @@ func (route *GetRoutes) accessDashboard(next echo.HandlerFunc) echo.HandlerFunc 
 		if email == "admin@etetika.com" {
 			role = "admin"
 		} else if email == "user@etetika.com" {
+			role = "user"
+		} else if c.FormValue("role") != "" {
 			role = "user"
 		}
 		log.Printf("email from accessDashboard:%v\n", email)

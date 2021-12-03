@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 
-	"github.com/adwinugroho/etetika-go/config"
 	"github.com/adwinugroho/etetika-go/models/request"
 	"github.com/go-session/session"
 	"github.com/labstack/echo/v4"
@@ -94,7 +93,7 @@ func Init(e *echo.Echo, services getRoutesDao) {
 
 }
 
-var userContext config.UserContext
+//var userContext config.UserContext
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
 	tplErr := t.templates.ExecuteTemplate(w, name, data)
