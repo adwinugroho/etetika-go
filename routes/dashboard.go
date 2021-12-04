@@ -80,3 +80,12 @@ func (route *GetRoutes) manageProduct(c echo.Context) error {
 		"fullname": "Adwin Nugroho Siswoyo",
 	})
 }
+
+func (route *GetRoutes) manageProfile(c echo.Context) error {
+	return c.Render(200, "profile_manage", map[string]interface{}{
+		"title":    "e-Tetika | Manage Profile",
+		"email":    route.user.Email,
+		"role":     route.user.Role,
+		"fullname": "Adwin Nugroho Siswoyo",
+	})
+}
